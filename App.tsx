@@ -1,12 +1,18 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect, useCallback } from 'react';
-import { Text, StyleSheet, TextInput, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { Text, StyleSheet, TextInput } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Button } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Raleway_100Thin } from '@expo-google-fonts/raleway';
 import { isValidUser, findUser, nullUser } from './lib/auth';
 import Dashboard from './components/Dashboard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Raleway_100Thin });
@@ -28,7 +34,14 @@ export default function App() {
   }
 
   if (isSignedIn) {
-    return (<Dashboard currentUser={currentUser} />)
+    return (<NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home">
+          {() => <HomeScreen currentUser={currentUser} />}
+        </Stack.Screen>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>)
   } else {
     return (<SafeAreaProvider style={styles.container}>
       <Text style={styles.center}>Please Sign In</Text>
