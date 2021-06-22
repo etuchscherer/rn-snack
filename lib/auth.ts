@@ -14,7 +14,7 @@ export function isValidUser(user: UserModel): boolean {
   return !!email.length && !!firstName.length && !!lastName.length;
 }
 
-export function findUser(email: string, password: string) {
+export function findUser(email: string, password: string): UserModel {
   // This is a demo, we we just grab the first
   // user, and skip the rest.
   // Yes, I know these are plain text passwords,

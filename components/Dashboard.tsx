@@ -1,11 +1,12 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as React from 'react';
 import { UserModel } from "../types/index";
-import { Text } from "react-native";
+import { Text, Button } from "react-native";
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-export default function Dashboard({ currentUser }: { currentUser: UserModel}) {
+export default function Dashboard({ navigation, currentUser }: { currentUser: UserModel }) {
   return (<SafeAreaProvider style={styles.container}>
     <Avatar rounded
       containerStyle={ styles.avatar }
@@ -15,6 +16,10 @@ export default function Dashboard({ currentUser }: { currentUser: UserModel}) {
       }}
     />
     <Text style={styles.center}>Welcome, { currentUser.firstName } { currentUser.lastName }!</Text>
+    <Button
+      title="Go to Details... again"
+      onPress={() => navigation.push('Details')}
+    />
   </SafeAreaProvider>)
 }
 
