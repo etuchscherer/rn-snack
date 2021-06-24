@@ -1,4 +1,4 @@
-import * as Users from '../data/mock/users.json';
+import Users from '../data/mock/users';
 import { UserModel } from '../types/index';
 
 export const nullUser: UserModel = {
@@ -15,6 +15,7 @@ export function isValidUser(user: UserModel): boolean {
 }
 
 export function findUser(email: string, password: string) {
+
   // This is a demo, we we just grab the first
   // user, and skip the rest.
   // Yes, I know these are plain text passwords,
