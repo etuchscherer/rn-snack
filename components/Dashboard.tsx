@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 
-export default function Dashboard({ currentUser }: { currentUser: UserModel }) {
+export default function Dashboard({ currentUser }: { currentUser: UserModel }): JSX.Element {
   const navigation = useNavigation();
 
   return (<SafeAreaProvider style={styles.container}>
