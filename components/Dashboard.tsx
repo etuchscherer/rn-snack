@@ -4,9 +4,11 @@ import { UserModel } from "../types/index";
 import { Text, Button } from "react-native";
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from '@react-navigation/native';
 
-export default function Dashboard({ navigation, currentUser }: { currentUser: UserModel }) {
+export default function Dashboard({ currentUser }: { currentUser: UserModel }) {
+  const navigation = useNavigation();
+
   return (<SafeAreaProvider style={styles.container}>
     <Avatar rounded
       containerStyle={ styles.avatar }
@@ -17,8 +19,8 @@ export default function Dashboard({ navigation, currentUser }: { currentUser: Us
     />
     <Text style={styles.center}>Welcome, { currentUser.firstName } { currentUser.lastName }!</Text>
     <Button
-      title="Go to Details... again"
-      onPress={() => navigation.push('Details')}
+      title="Go to Profile page"
+      onPress={() => navigation.navigate('Profile')}
     />
   </SafeAreaProvider>)
 }

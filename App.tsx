@@ -28,17 +28,17 @@ export default function App(): JSX.Element {
     return <AppLoading />
   }
 
-  const initialRoute = !isSignedIn ? 'SignIn' : 'Home';
+  if (isSignedIn) {
+    return (<NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home">
+          {() => <HomeScreen currentUser={currentUser} />}
+        </Stack.Screen>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>)
+  } else {
+    return (<SignInScreen onSignIn={_authenticate} />)
+  }
 
-  return (<NavigationContainer>
-    <Stack.Navigator initialRouteName={initialRoute}>
-      <Stack.Screen name="Home">
-        {() => <HomeScreen currentUser={currentUser} />}
-      </Stack.Screen>
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="SignIn">
-        {() => <SignInScreen onSignIn={_authenticate} />}
-      </Stack.Screen>
-    </Stack.Navigator>
-  </NavigationContainer>)
 }

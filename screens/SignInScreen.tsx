@@ -2,16 +2,16 @@ import { Text, StyleSheet, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { Button } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
 export default function SignInScreen({ onSignIn }: { onSignIn: CallableFunction }): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   function _authenticate() {
     onSignIn(email, password);
-    navigation.push('Home');
+    // navigation.push('Home');
   }
 
   return (<SafeAreaProvider style={styles.container}>
@@ -22,7 +22,7 @@ export default function SignInScreen({ onSignIn }: { onSignIn: CallableFunction 
     <Button title="Register" type="solid" containerStyle={styles.registerButtonContainer} buttonStyle={styles.buttonStyle} onPress={() => alert('register')} />
     </SafeAreaProvider>)
 }
-  
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
