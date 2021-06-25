@@ -1,13 +1,14 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import * as React from 'react';
-import { UserModel } from "../types/index";
+import React, { useContext } from 'react';
 import { Text, Button } from "react-native";
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
+import AppContext from '../components/AppContext';
 
-export default function Dashboard({ currentUser }: { currentUser: UserModel }): JSX.Element {
+export default function Dashboard(): JSX.Element {
   const navigation = useNavigation();
+  const { currentUser } = useContext(AppContext);
 
   return (<SafeAreaProvider style={styles.container}>
     <Avatar rounded

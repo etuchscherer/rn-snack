@@ -6,7 +6,7 @@ import { isValidUser, findUser } from '../lib/auth';
 import AppContext from '../components/AppContext';
 
 export default function SignInScreen(): JSX.Element {
-  const { isSignedIn, setSignedIn, setCurrentUser } = useContext(AppContext);
+  const { setSignedIn, setCurrentUser } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
