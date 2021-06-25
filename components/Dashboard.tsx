@@ -1,8 +1,8 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import React, { useContext } from 'react';
-import { Text, Button } from "react-native";
+import { Text } from "react-native";
 import { StyleSheet } from "react-native";
-import { Avatar } from "react-native-elements";
+import { Avatar, Button } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 import AppContext from '../components/AppContext';
 
@@ -20,6 +20,8 @@ export default function Dashboard(): JSX.Element {
     />
     <Text style={styles.center}>Welcome, { currentUser.firstName } { currentUser.lastName }!</Text>
     <Button
+      containerStyle={styles.buttonContainer}
+      buttonStyle={styles.buttonStyle}
       title="Go to Profile page"
       onPress={() => navigation.navigate('Profile')}
     />
@@ -41,5 +43,16 @@ const styles = StyleSheet.create({
   avatar: {
     marginTop: 140,
     alignSelf: 'center'
+  },
+  buttonContainer: {
+    width: '80%',
+    alignSelf: 'center',
+    marginTop: 80
+  },
+  buttonStyle: {
+    backgroundColor: 'transparent',
+    color: 'white',
+    borderColor: 'white',
+    borderWidth: 1
   }
 });
