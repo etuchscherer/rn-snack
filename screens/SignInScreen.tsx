@@ -1,14 +1,21 @@
 import { Text, StyleSheet, TextInput } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { isValidUser, findUser } from '../lib/auth';
+import AppContext from '../components/AppContext';
 
-export default function SignInScreen({ onSignIn }: { onSignIn: CallableFunction }): JSX.Element {
+export default function SignInScreen(): JSX.Element {
+  const { isSignedIn, setSignedIn, setCurrentUser } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function _authenticate() {
-    onSignIn(email, password);
+    const user = findUser(email, password);
+    if (isValidUser(user)) {
+      setSignedIn(true);
+      setCurrentUser(user);
+    }
   }
 
   return (<SafeAreaProvider style={styles.container}>
